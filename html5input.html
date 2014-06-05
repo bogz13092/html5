@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 - Input types</title>
+  <script src="modernizr.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  
+</head>
+<body>
+     <ul id="inputtypes" style="list-style:none">
+     
+     </ul>
+     <input type="number"/>
+     <input type="date"/>
+     <input type="colorpicker"/>
+     <input type="text" placeholder="hre" autofocus/>
+
+     <script>
+       var list = $("#inputtypes");
+       for(var inp in Modernizr.inputtypes){
+         list.append("<li>"+ inp+"<input type="+inp+" /></li>");
+       }
+       $("input").each(function(el){
+          console.log(el + ":" + $(this).attr("type"));
+       });
+     </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <meta charset="utf-8"/>
+     <title>HTML5 - Canvas</title>
+   </head>
+   <script src="modernizr.js"></script>
+   <script>
+     if(Modernizr.canvastext && Modernizr.canvas){
+       console.log("My browser supports Canvas and CanvasText. Let's draw something awesome!");
+     }else{
+       console.log("Oh well");
+     }
+   </script>
+   <body>
+     <datalist id="CanvasObj">
+       <option value="Text">       
+       <option value="Fill Rect">
+       <option value="Stroke Rect">
+       <option value="Line">
+       <option value="Gradient">
+     </datalist>
+     <fieldset style="margin-bottom:20px">
+       <input list="CanvasObj"/>
+       <input placeholder="x-coordinate" type="text"/>
+       <input placeholder="y-coordinate" type="text"/>
+       <input placeholder="width" type="text"/>
+       <input placeholder="height" type="text"/>
+       <input placeholder="color" type="color"/>
+       <button>Stroke!</button>
+     </fieldset>
+     <canvas id="myCanvas" width="1000" height="1000">
+       
+     </canvas>
+   </body>
+   <script>
+     var a_canvas = document.getElementById("myCanvas");
+     var ctx = a_canvas.getContext("2d");
+     var ctx2 = a_canvas.getContext("2d");
+     var gradient = ctx.createLinearGradient(0,50,0,300);
+     gradient.addColorStop(0,"purple");
+     gradient.addColorStop(1,"white");
+
+     //draw a border around the canvas
+     ctx.beginPath();
+     ctx.strokeStyle="red";
+     ctx.moveTo(0,0);
+     ctx.lineTo(a_canvas.width,0);
+     ctx.lineTo(a_canvas.width,a_canvas.height);
+     ctx.lineTo(0,a_canvas.height);
+     ctx.lineTo(0,0);
+     ctx.stroke();
+
+     //create a red line
+     ctx.strokeStyle="#807123";
+     ctx.moveTo(2,2); //starting point x:2,y:2 (upper-left)
+     ctx.lineTo(a_canvas.width,a_canvas.height); //ending point x:100 y:300 
+     ctx.stroke(); 
+    
+     //fill & stroke rectangle
+     ctx.strokeRect(900,105,50,30);
+     ctx.strokeStyle = "#eee";
+     
+     ctx.font = "italic 12px sans-serif";
+     ctx.textAlign = "left";
+     ctx.textBaseline = "top";
+     ctx.fillText("Rectangle with top-to-bottom linear gradient",a_canvas.width - 300, 130);
+     ctx.fillStyle =gradient;
+     ctx.fillRect(a_canvas.width - 300,150,300,100);
+     
+     ctx.fillRect(a_canvas.width-600,220,300,200);
+
+  
+     ctx.beginPath();
+     ctx.strokeStyle="#942020";
+     ctx.moveTo(0, 40);
+     ctx.lineTo(240, 40);
+     ctx.moveTo(260, 40);
+     ctx.lineTo(500, 40);
+     ctx.moveTo(495, 35);
+     ctx.lineTo(500, 40);
+     ctx.lineTo(495, 45);
+     ctx.stroke();
+     ctx.beginPath();
+     ctx.moveTo(40, 40);
+     ctx.lineTo(40, 240);
+     ctx.moveTo(40, 260);
+     ctx.lineTo(40, 500);
+     ctx.moveTo(35, 495);
+     ctx.lineTo(40, 500);
+     ctx.lineTo(45, 495);
+     ctx.stroke();
+     
+     ctx.beginPath();
+     ctx.strokeStyle="#102020";
+     ctx.moveTo(40,40);
+     ctx.lineTo(260,260);
+     ctx.moveTo(280,280);
+     ctx.lineTo(500,500);
+     ctx.moveTo(495,500);
+     ctx.lineTo(500,500);
+     ctx.lineTo(500,495);
+     ctx.stroke();
+     
+     ctx.font = "bold 12px sans-serif";
+     ctx.fillText("x", 247.5, 40);
+     ctx.fillText("y", 40, 247.5);
+
+     ctx.textBaseline = "top";
+     ctx.fillText("( 0 , 0 )", 8, 5);
+     ctx.textBaselie = "top";
+     ctx.textAlign = "right";
+     ctx.fillText("( 500 , 500 ) ",500,500);
+     ctx.fillRect(30,30,3,3);
+     ctx.fillRect(510,510,3,3);
+
+   </script>
+</html>
+
+
+
